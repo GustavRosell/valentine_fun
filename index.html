@@ -492,22 +492,25 @@
       btnNo.style.fontSize = `${1.15 * noBtnScale}rem`;
       btnNo.style.padding = `${14 * noBtnScale}px ${40 * noBtnScale}px`;
 
+      // Force browser reflow so getBoundingClientRect reflects new text/padding
+      void btnNo.offsetWidth;
+
       // Move No button to random position — fully within viewport, away from card & Yes button
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const btnRect = btnNo.getBoundingClientRect();
-      const bw = btnRect.width;
-      const bh = btnRect.height;
-      const pad = 30; // padding from screen edges
+      const bw = btnRect.width + 10;  // small extra safety margin
+      const bh = btnRect.height + 10;
+      const pad = 40; // padding from screen edges
 
       let newX, newY, tries = 0;
       do {
-        newX = pad + Math.random() * (vw - bw - pad * 2);
-        newY = pad + Math.random() * (vh - bh - pad * 2);
+        newX = pad + Math.random() * Math.max(0, vw - bw - pad * 2);
+        newY = pad + Math.random() * Math.max(0, vh - bh - pad * 2);
         tries++;
       } while (isOverlapping(newX, newY, bw, bh) && tries < 80);
 
-      // Clamp to ensure fully on-screen
+      // Clamp to ensure fully on-screen (belt and suspenders)
       newX = Math.max(pad, Math.min(newX, vw - bw - pad));
       newY = Math.max(pad, Math.min(newY, vh - bh - pad));
 
