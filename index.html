@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Question For You...</title>
+  <title>Et spørgsmål til dig...</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap');
 
@@ -358,29 +358,29 @@
   <!-- Main card -->
   <div class="card" id="card">
     <div class="heart-icon">💕</div>
-    <h1>Will you be my Valentine?</h1>
-    <p class="subtitle">I already know the answer... 😏</p>
+    <h1>Vil du være min Valentine?</h1>
+    <p class="subtitle">Jeg kender allerede svaret... 😏</p>
 
     <div class="plea" id="plea"></div>
     <div class="attempt-counter" id="attemptCounter"></div>
 
     <div class="buttons">
-      <button class="btn btn-yes" id="btnYes">Yes! 💖</button>
-      <button class="btn btn-no" id="btnNo">No</button>
+      <button class="btn btn-yes" id="btnYes">Ja! 💖</button>
+      <button class="btn btn-no" id="btnNo">Nej</button>
     </div>
   </div>
 
   <!-- Celebration screen -->
   <canvas id="fireworks"></canvas>
   <div class="celebration" id="celebration">
-    <h1>YAAAY!! 🎉</h1>
+    <h1>JAAAA!! 🎉</h1>
     <div class="love-note">
-      I knew you'd say yes!<br>
-      You just made me the happiest person alive 💕<br>
-      This is going to be the best Valentine's Day ever!
+      Jeg vidste du ville sige ja!<br>
+      Du har lige gjort mig til det lykkeligste menneske i verden 💕<br>
+      Det her bliver den bedste Valentinsdag nogensinde!
     </div>
     <div class="love-emoji">🥰💐🍫💌</div>
-    <div class="forever-text">You + Me = Forever ❤️</div>
+    <div class="forever-text">Dig + Mig = For evigt ❤️</div>
   </div>
   <div class="hearts-rain" id="heartsRain"></div>
 
@@ -404,28 +404,28 @@
 
     // ── Plea messages ──
     const pleas = [
-      "Wait... really? 🥺",
-      "Are you sure about that?",
-      "Please, I love you! 💔",
-      "You're breaking my heart...",
-      "Think again, my love! 🥹",
-      "I'll give you chocolate! 🍫",
-      "I promise to be the best valentine!",
-      "Don't do this to us... 😢",
-      "My heart can't take it!",
-      "But... but... we're perfect together! 💕",
-      "I'll write you love letters every day!",
-      "What if I beg? 🙏",
-      "Even the button is running from you!",
-      "You wouldn't... would you?! 😱",
-      "I'll cook you dinner! 🍝",
-      "Pretty please with a cherry on top? 🍒",
-      "My heart only beats for you...",
-      "This is NOT how our love story ends!",
-      "The universe wants you to say yes!",
-      "Look how big that Yes button is getting... 👀",
-      "Okay now you're just being mean 😤",
-      "PLEASE 😭😭😭",
+      "Vent... mener du det? 🥺",
+      "Er du sikker på det?",
+      "Vær sød, jeg elsker dig! 💔",
+      "Du knuser mit hjerte...",
+      "Tænk dig om, min skat! 🥹",
+      "Jeg giver dig chokolade! 🍫",
+      "Jeg lover at være den bedste valentine!",
+      "Gør ikke det her mod os... 😢",
+      "Mit hjerte kan ikke klare det!",
+      "Men... men... vi er perfekte sammen! 💕",
+      "Jeg skriver kærlighedsbreve til dig hver dag!",
+      "Hvad hvis jeg tigger? 🙏",
+      "Selv knappen løber fra dig!",
+      "Det ville du ikke... vel?! 😱",
+      "Jeg laver aftensmad til dig! 🍝",
+      "Pænt pænt pænt please? 🍒",
+      "Mit hjerte slår kun for dig...",
+      "Sådan her ender vores kærlighedshistorie IKKE!",
+      "Universet vil have dig til at sige ja!",
+      "Se hvor stor den Ja-knap bliver... 👀",
+      "Okay nu er du bare ond 😤",
+      "PLEEEASE 😭😭😭",
     ];
 
     // ── No button dodge logic ──
@@ -458,8 +458,8 @@
       // Show attempt counter
       if (attempts >= 2) {
         attemptCounter.classList.add('visible');
-        const suffix = attempts === 2 ? 'twice' : `${attempts} times`;
-        attemptCounter.textContent = `You've tried to say no ${suffix}... just give up already! 😤`;
+        const suffix = attempts === 2 ? '2 gange' : `${attempts} gange`;
+        attemptCounter.textContent = `Du har prøvet at sige nej ${suffix}... giv nu bare op! 😤`;
       }
 
       // Grow Yes button
