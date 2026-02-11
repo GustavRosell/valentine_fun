@@ -465,6 +465,13 @@
       attempts++;
       noIsRunaway = true;
 
+      // Move button out of the card and into <body> on first dodge.
+      // backdrop-filter on .card creates a new containing block,
+      // which breaks position:fixed — so the button must live outside the card.
+      if (btnNo.parentElement !== document.body) {
+        document.body.appendChild(btnNo);
+      }
+
       // Show plea message
       const msg = pleas[Math.min(attempts - 1, pleas.length - 1)];
       plea.textContent = msg;
@@ -510,11 +517,11 @@
         tries++;
       } while (isOverlapping(newX, newY, bw, bh) && tries < 80);
 
-      // Clamp to ensure fully on-screen (belt and suspenders)
+      // Clamp to ensure fully on-screen
       newX = Math.max(pad, Math.min(newX, vw - bw - pad));
       newY = Math.max(pad, Math.min(newY, vh - bh - pad));
 
-      // Position as fixed
+      // Position as fixed (now works correctly since button is a direct child of body)
       btnNo.style.position = 'fixed';
       btnNo.style.left = newX + 'px';
       btnNo.style.top = newY + 'px';
