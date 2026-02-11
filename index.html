@@ -45,10 +45,10 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      gap: 6px;
-      padding: 6px;
+      gap: 4px;
+      padding: 4px;
       z-index: 0;
-      opacity: 0.18;
+      opacity: 0.45;
       pointer-events: none;
     }
 
@@ -56,8 +56,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
-      filter: blur(1px);
+      border-radius: 8px;
     }
 
     /* ── Floating hearts background ── */
@@ -224,7 +223,26 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: radial-gradient(ellipse at center, #fff0f3 0%, #ffe0e6 100%);
+      background: radial-gradient(ellipse at center, rgba(255,240,243,0.85) 0%, rgba(255,224,230,0.85) 100%);
+    }
+
+    .celebration-photos {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 4px;
+      padding: 4px;
+      z-index: -1;
+      opacity: 0.35;
+    }
+
+    .celebration-photos img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     .celebration.active {
@@ -326,7 +344,7 @@
         font-size: 2.8rem;
       }
       .photo-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(4, 1fr);
       }
     }
@@ -371,6 +389,20 @@
   <!-- Celebration screen -->
   <canvas id="fireworks"></canvas>
   <div class="celebration" id="celebration">
+    <div class="celebration-photos">
+      <img src="photos/IMG_4768.jpg" alt="">
+      <img src="photos/IMG_4829.JPG" alt="">
+      <img src="photos/IMG_4863.jpg" alt="">
+      <img src="photos/IMG_4867.JPG" alt="">
+      <img src="photos/IMG_4927.JPG" alt="">
+      <img src="photos/IMG_4959.jpg" alt="">
+      <img src="photos/IMG_5007.jpg" alt="">
+      <img src="photos/IMG_5016.jpg" alt="">
+      <img src="photos/IMG_5049.jpg" alt="">
+      <img src="photos/IMG_5050.jpg" alt="">
+      <img src="photos/IMG_5120.JPG" alt="">
+      <img src="photos/att.Z35-BxP7_8bqZLhnGdOYRqQtGo95wiOjbMUuQ-YWsUU.JPG" alt="">
+    </div>
     <h1>JAAAA, BEX!! 🎉</h1>
     <div class="love-note">
       Jeg vidste du ville sige ja, Rebecca!<br>
