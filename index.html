@@ -134,7 +134,7 @@
 
     .subtitle {
       color: #c06;
-      font-size: 0.95rem;
+      font-size: 1.15rem;
       font-weight: 300;
       margin-bottom: 28px;
       min-height: 24px;
@@ -145,7 +145,7 @@
     .plea {
       color: var(--red);
       font-family: 'Dancing Script', cursive;
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       min-height: 36px;
       margin-bottom: 24px;
       opacity: 0;
@@ -194,8 +194,8 @@
     .btn-yes {
       background: linear-gradient(135deg, var(--pink), var(--red));
       color: var(--white);
-      padding: 14px 44px;
-      font-size: 1.15rem;
+      padding: 16px 48px;
+      font-size: 1.3rem;
       box-shadow: 0 4px 18px rgba(230, 57, 70, 0.35);
     }
 
@@ -207,8 +207,8 @@
     .btn-no {
       background: var(--white);
       color: var(--pink-dark);
-      padding: 12px 36px;
-      font-size: 1rem;
+      padding: 14px 40px;
+      font-size: 1.15rem;
       border: 2px solid var(--pink-light);
       transition: font-size 0.3s, padding 0.3s, left 0s, top 0s;
       white-space: nowrap;
@@ -432,18 +432,34 @@
       return card.getBoundingClientRect();
     }
 
-    function isOverlappingText(x, y, w, h) {
-      // Avoid overlapping the card center text area
+    function isOverlapping(x, y, w, h) {
+      // Check overlap with the card
       const cardRect = getCardRect();
-      const textZone = {
-        left: cardRect.left - 10,
-        right: cardRect.right + 10,
-        top: cardRect.top - 10,
-        bottom: cardRect.bottom + 10,
+      const zone = {
+        left: cardRect.left - 20,
+        right: cardRect.right + 20,
+        top: cardRect.top - 20,
+        bottom: cardRect.bottom + 20,
       };
-      return !(x + w < textZone.left || x > textZone.right ||
-               y + h < textZone.top || y > textZone.bottom);
+      if (!(x + w < zone.left || x > zone.right ||
+            y + h < zone.top || y > zone.bottom)) return true;
+
+      // Also check overlap with the Yes button
+      const yesRect = btnYes.getBoundingClientRect();
+      const yesZone = {
+        left: yesRect.left - 20,
+        right: yesRect.right + 20,
+        top: yesRect.top - 20,
+        bottom: yesRect.bottom + 20,
+      };
+      if (!(x + w < yesZone.left || x > yesZone.right ||
+            y + h < yesZone.top || y > yesZone.bottom)) return true;
+
+      return false;
     }
+
+    // No button text variations
+    const noTexts = ['Nej', 'Måske? 🤔', 'Nej...', 'Hmm... nej?', 'Måske?', 'Nej 😅'];
 
     function moveNoButton() {
       attempts++;
@@ -454,6 +470,11 @@
       plea.textContent = msg;
       plea.classList.add('visible');
 
+      // After 3 attempts, start swapping button text between Nej and Måske
+      if (attempts >= 3) {
+        btnNo.textContent = noTexts[Math.floor(Math.random() * noTexts.length)];
+      }
+
       // Show attempt counter
       if (attempts >= 2) {
         attemptCounter.classList.add('visible');
@@ -463,28 +484,32 @@
 
       // Grow Yes button
       yesBtnScale = Math.min(yesBtnScale + 0.12, 2.2);
-      btnYes.style.padding = `${14 * yesBtnScale}px ${44 * yesBtnScale}px`;
-      btnYes.style.fontSize = `${1.15 * yesBtnScale}rem`;
+      btnYes.style.padding = `${16 * yesBtnScale}px ${48 * yesBtnScale}px`;
+      btnYes.style.fontSize = `${1.3 * yesBtnScale}rem`;
 
       // Shrink No button (slowly, don't let it get too small)
-      noBtnScale = Math.max(noBtnScale - 0.03, 0.7);
-      btnNo.style.fontSize = `${1 * noBtnScale}rem`;
-      btnNo.style.padding = `${12 * noBtnScale}px ${36 * noBtnScale}px`;
+      noBtnScale = Math.max(noBtnScale - 0.03, 0.75);
+      btnNo.style.fontSize = `${1.15 * noBtnScale}rem`;
+      btnNo.style.padding = `${14 * noBtnScale}px ${40 * noBtnScale}px`;
 
-      // Move No button to random position (outside the card)
+      // Move No button to random position — fully within viewport, away from card & Yes button
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const btnRect = btnNo.getBoundingClientRect();
       const bw = btnRect.width;
       const bh = btnRect.height;
-      const margin = 12;
+      const pad = 30; // padding from screen edges
 
       let newX, newY, tries = 0;
       do {
-        newX = margin + Math.random() * (vw - bw - margin * 2);
-        newY = margin + Math.random() * (vh - bh - margin * 2);
+        newX = pad + Math.random() * (vw - bw - pad * 2);
+        newY = pad + Math.random() * (vh - bh - pad * 2);
         tries++;
-      } while (isOverlappingText(newX, newY, bw, bh) && tries < 60);
+      } while (isOverlapping(newX, newY, bw, bh) && tries < 80);
+
+      // Clamp to ensure fully on-screen
+      newX = Math.max(pad, Math.min(newX, vw - bw - pad));
+      newY = Math.max(pad, Math.min(newY, vh - bh - pad));
 
       // Position as fixed
       btnNo.style.position = 'fixed';
