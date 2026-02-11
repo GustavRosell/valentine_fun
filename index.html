@@ -466,8 +466,8 @@
       btnYes.style.padding = `${14 * yesBtnScale}px ${44 * yesBtnScale}px`;
       btnYes.style.fontSize = `${1.15 * yesBtnScale}rem`;
 
-      // Shrink No button
-      noBtnScale = Math.max(noBtnScale - 0.06, 0.45);
+      // Shrink No button (slowly, don't let it get too small)
+      noBtnScale = Math.max(noBtnScale - 0.03, 0.7);
       btnNo.style.fontSize = `${1 * noBtnScale}rem`;
       btnNo.style.padding = `${12 * noBtnScale}px ${36 * noBtnScale}px`;
 
@@ -490,7 +490,7 @@
       btnNo.style.position = 'fixed';
       btnNo.style.left = newX + 'px';
       btnNo.style.top = newY + 'px';
-      btnNo.style.zIndex = '50';
+      btnNo.style.zIndex = '200';
     }
 
     // Dodge on hover AND touch
