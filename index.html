@@ -489,13 +489,14 @@
         attemptCounter.textContent = `Du har prøvet at sige nej ${suffix}... giv nu bare op! 😤`;
       }
 
-      // Grow Yes button
-      yesBtnScale = Math.min(yesBtnScale + 0.12, 2.2);
+      // Grow Yes button — starts fast, slows down, but never fully stops
+      const growRate = attempts < 10 ? 0.15 : attempts < 20 ? 0.10 : 0.06;
+      yesBtnScale = Math.min(yesBtnScale + growRate, 4.5);
       btnYes.style.padding = `${16 * yesBtnScale}px ${48 * yesBtnScale}px`;
       btnYes.style.fontSize = `${1.3 * yesBtnScale}rem`;
 
-      // Shrink No button (slowly, don't let it get too small)
-      noBtnScale = Math.max(noBtnScale - 0.03, 0.75);
+      // Shrink No button
+      noBtnScale = Math.max(noBtnScale - 0.04, 0.55);
       btnNo.style.fontSize = `${1.15 * noBtnScale}rem`;
       btnNo.style.padding = `${14 * noBtnScale}px ${40 * noBtnScale}px`;
 
