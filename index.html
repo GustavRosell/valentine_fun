@@ -44,18 +44,17 @@
       inset: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 25vh 25vh 25vh 25vh;
+      grid-auto-rows: min-content;
       gap: 0;
       z-index: 0;
       opacity: 0.45;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .photo-grid img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
+      height: auto;
       display: block;
     }
 
@@ -231,17 +230,16 @@
       inset: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 25vh 25vh 25vh 25vh;
+      grid-auto-rows: min-content;
       gap: 0;
       z-index: -1;
       opacity: 0.35;
+      overflow: hidden;
     }
 
     .celebration-photos img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
+      height: auto;
       display: block;
     }
 
@@ -344,8 +342,7 @@
         font-size: 2.8rem;
       }
       .photo-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 25vh 25vh 25vh 25vh;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
